@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
 
-from librarians.models import Librarian
-from readers.models import Reader
+from users.forms import UserRegisterForm
+from users.models import Reader, Librarian
 
 
 class RegisterView(CreateView):
@@ -17,12 +17,6 @@ class RegisterView(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Регистрация на сайте'
         return context
-
-
-class ProfileView(DetailView):
-
-    def get_object(self, queryset=None):
-        return self.request.user
 
 
 class RegisterReader(RegisterView):
